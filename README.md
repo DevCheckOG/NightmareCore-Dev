@@ -9,4 +9,4 @@ Repositorio oficial para desarrolladores del **Núcleo Pesadilla**.
 
 ## ¿Que es el plugin Nightmare Core 💀?
 
-- 🔥 **Es un plugin que intenta convertir la experiencia normal de un usuario de minecraft a una pesadilla con gran dificultad para avanzar en el juego.**
+- 🔥 **Es un plugin que intenta convertir la experiencia normal de un usuario de minecraft en una pesadilla con gran dificultad para avanzar en el juego.**
