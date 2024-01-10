@@ -73,6 +73,8 @@ public final class Main extends JavaPlugin {
 
     getServer().getPluginManager().registerEvents(new Events(), instance);
 
+    getCommand("nightmare").setExecutor(new Commands());
+
     File settings = new File(getDataFolder(), "settings.yml");
 
     if (!settings.exists()) {

@@ -3,3 +3,17 @@ main: com.nightmare.Main
 version: 1.0-release
 api-version: 1.16
 softdepend: [PlaceHolderAPI]
+
+commands:
+
+  nightmare:
+
+    description: "Manage the Nightmare Core."
+    usage: "/nightmare <category> <subcommand> | /nightmare <category>"
+
+permissions:
+
+  nightmare.reload:
+
+    description: "Allows the player to reload the Nightmare Core."
+    default: true

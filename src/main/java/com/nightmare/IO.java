@@ -44,6 +44,11 @@ public final class IO {
         #If you want to configure something you must do it with its corresponding values.
 
         perm: "&cYou not have permission to do that."
+        reload:
+
+            messages: "&aMessages.yml has been reloaded."
+            settings: "&aSettings.yml has been reloaded."
+
         """;
 
         Files.writeString(messagesPath, dataMessages);
@@ -210,6 +215,16 @@ public final class IO {
 
         HashMapOfMessages.put("perm", config.getString("perm").toString());    
 
+        if (config.getString("reload.messages") == null)
+            throw new IOException("reload.messages not found in messages.yml.");
+
+        HashMapOfMessages.put("reload-messages", config.getString("reload.messages").toString());    
+        
+        if (config.getString("reload.settings") == null)
+            throw new IOException("reload.settings not found in messages.yml.");
+
+        HashMapOfMessages.put("reload-settings", config.getString("reload.settings").toString());     
+
     }
 
     public static final void SubmitSettings(Plugin plugin) throws IOException {
@@ -262,6 +277,17 @@ public final class IO {
             throw new IOException("perm not found in messages.yml.");
 
         HashMapOfMessages.put("perm", config.getString("perm").toString());   
+
+        if (config.getString("reload.messages") == null)
+            throw new IOException("reload.messages not found in messages.yml.");
+
+        HashMapOfMessages.put("reload-messages", config.getString("reload.messages").toString());    
+        
+        if (config.getString("reload.settings") == null)
+            throw new IOException("reload.settings not found in messages.yml.");
+
+        HashMapOfMessages.put("reload-settings", config.getString("reload.settings").toString());     
+
 
     }
     
