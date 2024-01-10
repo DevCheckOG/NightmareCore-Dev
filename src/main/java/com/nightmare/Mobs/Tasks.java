@@ -69,7 +69,7 @@ public final class Tasks {
                                 Player player = (Player) entity;
 
                                 if (player.getGameMode() == GameMode.SURVIVAL)
-                                    creeper.setTarget((Player) entity);
+                                    creeper.setTarget(player);
 
                             }
 
@@ -80,7 +80,7 @@ public final class Tasks {
                                 Player player = (Player) entity;
 
                                 if (player.getGameMode() == GameMode.SURVIVAL)
-                                    creeper.setTarget((Player) player);
+                                    creeper.setTarget(player);
 
                             }
 
