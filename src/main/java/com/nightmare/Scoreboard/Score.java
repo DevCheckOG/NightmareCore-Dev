@@ -1,0 +1,90 @@
+package com.nightmare.Scoreboard;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.plugin.Plugin;
+
+import com.nightmare.APIS.FastBoard;
+
+import me.clip.placeholderapi.PlaceholderAPI;
+import net.md_5.bungee.api.ChatColor;
+
+public final class Score {
+
+    public static final Map<UUID, FastBoard> boards = new HashMap<UUID, FastBoard>();
+    
+    public final void initScorebaord(Plugin plugin) {
+
+        plugin.getServer().getScheduler().runTaskTimer(plugin, () -> {
+
+            for (FastBoard board : boards.values()) {
+
+                updateScoreboard(plugin, board);
+            }
+
+        }, 0, 20L);
+
+    }
+
+    private final void updateScoreboard(Plugin plugin, FastBoard board) {
+
+        File settings = new File(plugin.getDataFolder(), "settings.yml");   
+
+        if (!settings.exists()) return;
+
+        YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
+
+        if (config.getStringList("scoreboard.lines") == null) return;
+
+        List<String> lines = config.getStringList("scoreboard.lines");
+
+        if (lines.size() >= 14) return;
+
+        ArrayList<String> newLines = new ArrayList<>();
+
+        for (String line : lines) {
+            
+            if (line.contains("%player%")) {
+
+                newLines.add(ChatColor.translateAlternateColorCodes('&', line.replace("%player%", PlaceholderAPI.setPlaceholders(board.getPlayer(), "%player_name%"))));
+                continue;
+
+            } else if (line.contains("%online%")) { 
+
+                newLines.add(ChatColor.translateAlternateColorCodes('&', line.replace("%online%", String.valueOf(plugin.getServer().getOnlinePlayers().size()) + " / " + plugin.getServer().getMaxPlayers())));
+                continue;
+
+            } else if (line.contains("%location%")) {
+
+                newLines.add(ChatColor.translateAlternateColorCodes('&', line.replace("%location%", String.format("%d %d %d", Math.round(board.getPlayer().getLocation().getX()), Math.round(board.getPlayer().getLocation().getY()), Math.round(board.getPlayer().getLocation().getZ())))));
+                continue;
+
+            } 
+
+            Pattern pattern = Pattern.compile("%.+?%");
+            Matcher matcher = pattern.matcher(line);
+
+            if (matcher.find()) {
+
+                newLines.add(ChatColor.translateAlternateColorCodes('&', line.replace(matcher.group(), PlaceholderAPI.setPlaceholders(board.getPlayer(), matcher.group()))));
+                continue;
+
+            }
+            
+            newLines.add(ChatColor.translateAlternateColorCodes('&', line));
+
+        }
+
+        board.updateLines(newLines);
+
+    }
+
+}

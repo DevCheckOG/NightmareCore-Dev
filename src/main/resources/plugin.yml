@@ -1,0 +1,4 @@
+name: Nightmare
+main: com.nightmare.Main
+version: 1.0-release
+api-version: 1.16
