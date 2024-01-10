@@ -16,8 +16,7 @@ import com.nightmare.Utils.Utils;
 
 import net.md_5.bungee.api.ChatColor;
 
-public final class Main extends JavaPlugin
-{
+public final class Main extends JavaPlugin {
 
   private static Main instance;
 
