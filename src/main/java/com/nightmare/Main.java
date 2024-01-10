@@ -21,8 +21,8 @@ public final class Main extends JavaPlugin
 
   private static Main instance;
 
-  public void onEnable()
-  {
+  public void onEnable() {
+
     Runtime.getRuntime();
 
     if (!(Constants.jdks.contains(Runtime.version().toString().substring(0, 2)))) {
@@ -133,9 +133,10 @@ public final class Main extends JavaPlugin
 
   }
 
-  public void onDisable()
-  {
+  public void onDisable() {
+    
     getServer().getScheduler().cancelTasks(instance);
+
   }
 
   public static final Plugin getInstance() {
