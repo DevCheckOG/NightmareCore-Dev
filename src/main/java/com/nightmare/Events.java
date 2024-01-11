@@ -31,7 +31,7 @@ import org.bukkit.scoreboard.ScoreboardManager;
 import com.nightmare.APIS.FastBoard;
 import com.nightmare.Mobs.Mobs;
 import com.nightmare.Scoreboard.Score;
-import com.nightmare.Utils.Check;
+import com.nightmare.Utils.Eval;
 
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.ChatColor;
@@ -51,7 +51,7 @@ public final class Events implements Listener {
 
             YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
 
-            Check.eval(plugin, "onJoin", config);
+            Eval.eval(plugin, "onJoin", config);
 
             if (config.getBoolean("scoreboard.enable")) {
 
@@ -138,7 +138,7 @@ public final class Events implements Listener {
 
             YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
 
-            Check.eval(plugin, "onLeave", config);
+            Eval.eval(plugin, "onLeave", config);
 
             if (config.getBoolean("scoreboard.enable")) { 
 
@@ -183,7 +183,7 @@ public final class Events implements Listener {
 
             YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
 
-            Check.eval(plugin, "onServerPing", config);
+            Eval.eval(plugin, "onServerPing", config);
 
             if (config.getBoolean("motd.enable")) {
 
@@ -221,7 +221,7 @@ public final class Events implements Listener {
 
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
 
-                Check.eval(plugin, "onSpawnEvent", config);
+                Eval.eval(plugin, "onSpawnEvent", config);
 
                 Mobs mobs = new Mobs();
 
@@ -235,7 +235,7 @@ public final class Events implements Listener {
 
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
 
-                Check.eval(plugin, "onSpawnEvent", config);
+                Eval.eval(plugin, "onSpawnEvent", config);
 
                 Mobs mobs = new Mobs();
 
@@ -249,7 +249,7 @@ public final class Events implements Listener {
 
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
 
-                Check.eval(plugin, "onSpawnEvent", config);
+                Eval.eval(plugin, "onSpawnEvent", config);
 
                 Mobs mobs = new Mobs();
 
@@ -263,7 +263,7 @@ public final class Events implements Listener {
 
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
 
-                Check.eval(plugin, "onSpawnEvent", config);
+                Eval.eval(plugin, "onSpawnEvent", config);
 
                 Mobs mobs = new Mobs();
 
@@ -277,7 +277,7 @@ public final class Events implements Listener {
 
                 YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
 
-                Check.eval(plugin, "onSpawnEvent", config);
+                Eval.eval(plugin, "onSpawnEvent", config);
 
                 Mobs mobs = new Mobs();
 
@@ -322,7 +322,7 @@ public final class Events implements Listener {
 
             YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
 
-            Check.eval(plugin, "onSpawnEvent", config);
+            Eval.eval(plugin, "onSpawnEvent", config);
 
             if (event.getEntityType() == EntityType.ZOMBIE && event.getEntity().getCustomName() != null && event.getEntity().getCustomName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.zombie.name_c"))))
 

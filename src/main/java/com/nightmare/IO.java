@@ -124,7 +124,7 @@ public final class IO {
 
             enable: true
 
-            header: "&x&f&b&0&2&0&2&lN&x&f&b&1&0&0&3&li&x&f&b&1&e&0&4&lg&x&f&b&2&c&0&5&lh&x&f&c&3&b&0&6&lt&x&f&c&4&9&0&7&lm&x&f&c&5&7&0&8&la&x&f&c&6&5&0&9&lr&x&f&c&7&3&0&a&le &x&f&c&8&1&0&b&lC&x&f&d&9&0&0&c&lo&x&f&d&9&e&0&d&lr&x&f&d&a&c&0&e&le &x&f&d&b&a&0&f&l☠&r"
+            header: "&4☠ &x&f&b&0&a&0&a&lN&x&f&b&1&2&1&2&li&x&f&b&1&a&1&a&lg&x&f&c&2&2&2&2&lh&x&f&c&2&a&2&a&lt&x&f&c&3&2&3&2&lm&x&f&c&3&a&3&a&la&x&f&c&4&1&4&1&lr&x&f&c&4&9&4&9&le &x&f&c&5&1&5&1&lC&x&f&d&5&9&5&9&lo&x&f&d&6&1&6&1&lr&x&f&d&6&9&6&9&le &4☠&r"
             footer: "Welcome &c%player_name% &fto the &4Nightmare World ☠&r."
 
         # Motd
