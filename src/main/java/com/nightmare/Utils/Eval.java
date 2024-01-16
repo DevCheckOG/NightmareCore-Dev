@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 
+import com.nightmare.Main;
 import com.nightmare.Utils.Constants.onJoin;
 import com.nightmare.Utils.Constants.onLeave;
 import com.nightmare.Utils.Constants.onServerPing;
@@ -12,7 +13,9 @@ import com.nightmare.Utils.Constants.onSpawnEvent;
 
 public final class Eval {
 
-    public static final void eval(Plugin plugin, String event, YamlConfiguration config) throws IOException {
+    private static final Plugin plugin = Main.getInstance();
+
+    public static final void eval(String event, YamlConfiguration config) throws IOException {
         
         if (event.equalsIgnoreCase("onJoin")) {
 

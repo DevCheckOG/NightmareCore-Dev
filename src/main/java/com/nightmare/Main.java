@@ -19,22 +19,10 @@ import net.md_5.bungee.api.ChatColor;
 public final class Main extends JavaPlugin {
 
   private static Main instance;
+  private static YamlConfiguration settings;
+  private static YamlConfiguration messages;
 
   public void onEnable() {
-
-    Runtime.getRuntime();
-
-    if (!(Constants.jdks.contains(Runtime.version().toString().substring(0, 2)))) {
-
-      getServer().getPluginManager().disablePlugin(instance);
-      try {
-        throw new Exception("Incompatible Java Version.");
-      } catch (Exception e) {
-        getServer().getPluginManager().disablePlugin(instance);
-        e.printStackTrace();
-      }
-
-    }
 
     Bukkit.getConsoleSender().sendMessage("");
     Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lNighmare Core"));
@@ -71,8 +59,14 @@ public final class Main extends JavaPlugin {
       e.printStackTrace();
     }
 
-    getServer().getPluginManager().registerEvents(new Events(), instance);
+    //Archives of YML
 
+    settings = YamlConfiguration.loadConfiguration(new File(getDataFolder(), "settings.yml"));
+    messages = YamlConfiguration.loadConfiguration(new File(getDataFolder(), "messages.yml"));
+
+    //Commands and Events
+
+    getServer().getPluginManager().registerEvents(new Events(), instance);
     getCommand("nightmare").setExecutor(new Commands());
 
     File settings = new File(getDataFolder(), "settings.yml");
@@ -102,7 +96,7 @@ public final class Main extends JavaPlugin {
     } else if (config.getBoolean("scoreboard.enable") == true) {
 
       Score score = new Score();
-      score.initScorebaord(instance);
+      score.initScorebaord();
 
     }
 
@@ -120,7 +114,7 @@ public final class Main extends JavaPlugin {
       Tab tab = new Tab();
 
       try {
-        tab.initTablist(instance);
+        tab.initTablist();
       } catch (IOException e) {
         getServer().getPluginManager().disablePlugin(instance);
         e.printStackTrace();
@@ -130,7 +124,9 @@ public final class Main extends JavaPlugin {
 
     Utils.initNightmare(instance);
 
-    Tasks.setEffectsMobs(instance);
+    Tasks setEffectsMobs = new Tasks();
+
+    setEffectsMobs.setEffectsMobs();
 
   }
 
@@ -143,6 +139,40 @@ public final class Main extends JavaPlugin {
   public static final Plugin getInstance() {
 
     return instance;
+
+  }
+
+  public static final YamlConfiguration getSettings() {
+    
+    return settings;
+
+  }
+
+  public static final YamlConfiguration getMessages() {
+    
+    return messages;
+
+  }
+
+  public static final void setSettings() throws IOException {
+
+    File file = new File(instance.getDataFolder(), "settings.yml");
+
+    if (!file.exists())
+      throw new IOException("settings.yml does not exist.");
+
+    settings = YamlConfiguration.loadConfiguration(file);
+    
+  }
+
+  public static final void setMessages() throws IOException {
+    
+    File file = new File(instance.getDataFolder(), "messages.yml");
+
+    if (!file.exists())
+      throw new IOException("messages.yml does not exist.");
+
+    messages = YamlConfiguration.loadConfiguration(file);  
 
   }
 

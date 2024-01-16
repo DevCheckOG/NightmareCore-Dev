@@ -9,12 +9,16 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 
+import com.nightmare.Main;
+
 import me.clip.placeholderapi.PlaceholderAPI;
 import net.md_5.bungee.api.ChatColor;
 
 public final class Tab {
 
-    public final void initTablist(Plugin plugin) throws IOException {
+    protected final Plugin plugin = Main.getInstance();
+
+    public final void initTablist() throws IOException {
 
         plugin.getServer().getScheduler().runTaskTimer(plugin, () -> {
 
@@ -30,7 +34,7 @@ public final class Tab {
                         e.printStackTrace();
                     }
 
-                YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
+                final YamlConfiguration config = Main.getSettings();    
 
                 if (config.get("tablist.header") == null  || config.get("tablist.footer") == null)
                     try {

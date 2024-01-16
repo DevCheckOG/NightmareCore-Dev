@@ -1,11 +1,8 @@
 package com.nightmare.Utils;
 
-import java.util.List;
-
 public final class Constants {
 
     public static final String VERSION = "1.0";
-    public static final List<String> jdks = List.of("16", "17", "18", "19","20", "21");
 
     public static enum onJoin {
 
@@ -93,34 +90,9 @@ public final class Constants {
         
         config("config"),
         config_mobs("config.mobs"),
-        config_mobs_zombie("config.mobs.zombie"),
-        config_mobs_creeper("config.mobs.creeper"),
-        config_mobs_spider("config.mobs.spider"),
-        config_mobs_skeleton("config.mobs.skeleton"),
-        config_mobs_enderman("config.mobs.enderman"),
-        
-        // Tier C Name
-        config_mobs_zombie_name_c("config.mobs.zombie.name_c"),
-        config_mobs_creeper_name_c("config.mobs.creeper.name_c"),
-        config_mobs_spider_name_c("config.mobs.spider.name_c"),
-        config_mobs_skeleton_name_c("config.mobs.skeleton.name_c"),
-        config_mobs_enderman_name_c("config.mobs.enderman.name_c"),
-
-        //Tier B Name
-
-        config_mobs_zombie_name_b("config.mobs.zombie.name_b"),
-        config_mobs_creeper_name_b("config.mobs.creeper.name_b"),
-        config_mobs_spider_name_b("config.mobs.spider.name_b"),
-        config_mobs_skeleton_name_b("config.mobs.skeleton.name_b"),
-        config_mobs_enderman_name_b("config.mobs.enderman.name_b"),
-
-        //Tier A Name
-
-        config_mobs_zombie_name_a("config.mobs.zombie.name_a"),
-        config_mobs_creeper_name_a("config.mobs.creeper.name_a"),
-        config_mobs_spider_name_a("config.mobs.spider.name_a"),
-        config_mobs_skeleton_name_a("config.mobs.skeleton.name_a"),
-        config_mobs_enderman_name_a("config.mobs.enderman.name_a");
+        config_mobs_name_c("config.mobs.c"),
+        config_mobs_name_b("config.mobs.b"),
+        config_mobs_name_a("config.mobs.a");
     
         private final String value;
 

@@ -19,11 +19,16 @@ import org.bukkit.entity.Spider;
 import org.bukkit.entity.Zombie;
 import org.bukkit.plugin.Plugin;
 
+import com.nightmare.Main;
+
 import net.md_5.bungee.api.ChatColor;
 
 public final class Tasks {
 
-    public static final void setEffectsMobs(Plugin plugin) {
+    private final YamlConfiguration config = Main.getSettings();
+    private final Plugin plugin = Main.getInstance();
+
+    public final void setEffectsMobs() {
 
         File settings = new File(plugin.getDataFolder(), "settings.yml");   
 
@@ -35,8 +40,6 @@ public final class Tasks {
                 plugin.getServer().getPluginManager().disablePlugin(plugin);
                 e.printStackTrace();
             }
-
-        YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
 
         plugin.getServer().getScheduler().runTaskTimer(plugin, () -> {
 
@@ -51,7 +54,9 @@ public final class Tasks {
 
                         Zombie zombie = (Zombie) mob;
 
-                        if (zombie.getCustomName() != null && zombie.getCustomName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.zombie.name_c"))) && zombie.isDead() != true) {
+                        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Zombie.class.getSimpleName()));
+
+                        if (zombie.getCustomName() != null && zombie.getCustomName().equalsIgnoreCase(c) && zombie.isDead() != true) {
 
                             world.spawnParticle(Particle.EXPLOSION_HUGE, zombie.getLocation(), 60);
                             world.playSound(zombie.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, SoundCategory.HOSTILE, 1, 1);
@@ -62,7 +67,9 @@ public final class Tasks {
 
                         Creeper creeper = (Creeper) mob;
 
-                        if (creeper.getCustomName() != null && creeper.getCustomName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.creeper.name_c"))) && creeper.isDead() != true && creeper.getTarget() == null) {
+                        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Creeper.class.getSimpleName()));
+
+                        if (creeper.getCustomName() != null && creeper.getCustomName().equalsIgnoreCase(c) && creeper.isDead() != true && creeper.getTarget() == null) {
 
                             for (Entity entity : creeper.getNearbyEntities(15.0, 15.0, 15.0).stream().filter(filterPlayer).toList()) {
 
@@ -73,7 +80,7 @@ public final class Tasks {
 
                             }
 
-                        } else if (creeper.getCustomName() != null && creeper.getCustomName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.creeper.name_b"))) && creeper.isDead() != true && creeper.getTarget() == null) {
+                        } else if (creeper.getCustomName() != null && creeper.getCustomName().equalsIgnoreCase(c) && creeper.isDead() != true && creeper.getTarget() == null) {
 
                             for (Entity entity : creeper.getNearbyEntities(15.0, 15.0, 15.0).stream().filter(filterPlayer).toList()) {
 
@@ -90,7 +97,9 @@ public final class Tasks {
 
                         Spider spider = (Spider) mob;
 
-                        if (spider.getCustomName() != null && spider.getCustomName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.spider.name_c"))) && spider.isDead() != true && spider.getTarget() != null) {
+                        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Spider.class.getSimpleName()));
+
+                        if (spider.getCustomName() != null && spider.getCustomName().equalsIgnoreCase(c) && spider.isDead() != true && spider.getTarget() != null) {
 
                             if (spider.getTarget() instanceof Player) {
 
@@ -109,11 +118,13 @@ public final class Tasks {
 
                         Enderman enderman = (Enderman) mob;
 
-                        if (enderman.getCustomName() != null && enderman.getCustomName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.enderman.name_c"))) && enderman.isDead() != true) {
+                        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Enderman.class.getSimpleName()));
+
+                        if (enderman.getCustomName() != null && enderman.getCustomName().equalsIgnoreCase(c) && enderman.isDead() != true) {
 
                             enderman.getWorld().spawnParticle(Particle.END_ROD, enderman.getLocation(), 60);
 
-                        } else if (enderman.getCustomName() != null && enderman.getCustomName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.enderman.name_b"))) && enderman.isDead() != true) {
+                        } else if (enderman.getCustomName() != null && enderman.getCustomName().equalsIgnoreCase(c) && enderman.isDead() != true) {
 
                             enderman.getWorld().spawnParticle(Particle.PORTAL, enderman.getLocation(), 60);
 

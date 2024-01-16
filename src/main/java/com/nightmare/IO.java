@@ -161,39 +161,15 @@ public final class IO {
 
             mobs:
 
-                # name_c -> Name of the tier c mob.
-                # name_b -> Name of the tier b mob.
-                # name_a -> Name of the tier a mob.
+                #c -> Name of the tier c mob.
+                #b -> Name of the tier b mob.
+                #a -> Name of the tier a mob.
 
-                zombie: 
+                # %mob% -> Name of the mob (Obligatory).
 
-                    name_c: "&c&lNightmare Zombie &4☠&4 Tier C"
-                    name_b: "&c&lNightmare Zombie &4☠&e Tier B"
-                    name_a: "&c&lNightmare Zombie &4☠&a Tier A"
-
-                creeper:
-                
-                    name_c: "&c&lNightmare Creeper &4☠&4 Tier C"
-                    name_b: "&c&lNightmare Creeper &4☠&e Tier B"
-                    name_a: "&c&lNightmare Creeper &4☠&a Tier A"
-
-                spider:
-                
-                    name_c: "&c&lNightmare Spider &4☠&4 Tier C"
-                    name_b: "&c&lNightmare Spider &4☠&e Tier B"
-                    name_a: "&c&lNightmare Spider &4☠&a Tier A"
-
-                skeleton:
-                
-                    name_c: "&c&lNightmare Skeleton &4☠&4 Tier C"
-                    name_b: "&c&lNightmare Skeleton &4☠&e Tier B"
-                    name_a: "&c&lNightmare Skeleton &4☠&a Tier A"
-
-                enderman:
-                
-                    name_c: "&c&lNightmare Enderman &4☠&4 Tier C"
-                    name_b: "&c&lNightmare Enderman &4☠&e Tier B"
-                    name_a: "&c&lNightmare Enderman &4☠&a Tier A"
+                c: "&c&lNightmare %mob% &4☠&4 Tier C"
+                b: "&c&lNightmare %mob% &4☠&e Tier B"
+                a: "&c&lNightmare %mob% &4☠&a Tier A"
 
         """;
 
@@ -259,6 +235,7 @@ public final class IO {
 
         HashMapOfSettings.put("prefix", config.getString("prefix").toString());
 
+        Main.setSettings();
 
     }
 
@@ -288,6 +265,7 @@ public final class IO {
 
         HashMapOfMessages.put("reload-settings", config.getString("reload.settings").toString());     
 
+        Main.setMessages();
 
     }
     

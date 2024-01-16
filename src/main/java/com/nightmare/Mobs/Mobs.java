@@ -1,6 +1,7 @@
 package com.nightmare.Mobs;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.bukkit.Material;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -23,28 +24,33 @@ import net.md_5.bungee.api.ChatColor;
 public final class Mobs {
 
     private final Random random = new Random();
+    private final ThreadLocalRandom threadLocalRandom = ThreadLocalRandom.current();
 
     public final void setNightmareZombie(Entity entity, YamlConfiguration config) {
 
         Zombie mob = (Zombie) entity;
 
         int randomNumber = random.nextInt(40 - 15 + 1) + random.nextInt(20);
+
+        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Zombie.class.getSimpleName()));
+        final String b = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.b").replace("%mob%", Zombie.class.getSimpleName()));
+        final String a = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.a").replace("%mob%", Zombie.class.getSimpleName()));
  
         if (randomNumber == 25 - 1 || randomNumber == 25 - 2 || randomNumber == 25 - 3|| randomNumber == 25 - 4) {
+
+            mob.setCustomName(c);
+            mob.setCustomNameVisible(true);
 
             mob.setVisualFire(false);
             mob.setCanPickupItems(false);
 
             mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 2));
             mob.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, PotionEffect.INFINITE_DURATION, 1));
-            mob.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, PotionEffect.INFINITE_DURATION, 3));
+            mob.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, PotionEffect.INFINITE_DURATION, 2));
             mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, PotionEffect.INFINITE_DURATION, 5));
-            mob.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, PotionEffect.INFINITE_DURATION, 3));
+            mob.addPotionEffect(new PotionEffect(PotionEffectType.REGENERATION, PotionEffect.INFINITE_DURATION, 2));
 
             mob.setPersistent(true);
-
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.zombie.name_c")));
-            mob.setCustomNameVisible(true);
             
             EntityEquipment equipment = mob.getEquipment();
 
@@ -68,6 +74,9 @@ public final class Mobs {
 
         } else if (randomNumber == 25 - 5 || randomNumber == 25 - 6 || randomNumber == 25 - 7 || randomNumber == 25 - 8 || randomNumber == 25 - 9) {
 
+            mob.setCustomName(b);
+            mob.setCustomNameVisible(true);
+
             mob.setVisualFire(false);
             mob.setCanPickupItems(false);
 
@@ -78,9 +87,6 @@ public final class Mobs {
 
             mob.setPersistent(true);
 
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.zombie.name_b")));
-            mob.setCustomNameVisible(true);
-
             ItemStack sword = new ItemStack(Material.DIAMOND_AXE, 1);
 
             sword.addEnchantment(Enchantment.DAMAGE_ALL, 3);
@@ -89,14 +95,13 @@ public final class Mobs {
 
         } else if (randomNumber == 25 - 10 || randomNumber == 25 - 11 || randomNumber == 25 - 12 || randomNumber == 25 - 13 || randomNumber == 25 - 14) {
             
+            mob.setCustomName(a);
+            mob.setCustomNameVisible(true);
 
             mob.setVisualFire(false);
             mob.setCanPickupItems(false);
 
             mob.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, PotionEffect.INFINITE_DURATION, 1));
-
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.zombie.name_a")));
-            mob.setCustomNameVisible(true);
 
         }
 
@@ -110,17 +115,21 @@ public final class Mobs {
 
         int randomNumber = random.nextInt(40 - 15 + 1) + random.nextInt(20);
 
+        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Creeper.class.getSimpleName()));
+        final String b = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.b").replace("%mob%", Creeper.class.getSimpleName()));
+        final String a = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.a").replace("%mob%", Creeper.class.getSimpleName()));
+
         if (randomNumber == 25 - 1 || randomNumber == 25 - 2 || randomNumber == 25 - 3|| randomNumber == 25 - 4) {
 
-            mob.setExplosionRadius(20);
+            mob.setCustomName(c);
+            mob.setCustomNameVisible(true);
+
+            mob.setExplosionRadius(threadLocalRandom.nextInt(15, 40));
             mob.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, PotionEffect.INFINITE_DURATION, 3));
             mob.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, PotionEffect.INFINITE_DURATION, 3));
             mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 4));
 
             mob.setPersistent(true);
-            
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.creeper.name_c")));
-            mob.setCustomNameVisible(true);
 
             if (mob.getLocation().getY() >= mob.getWorld().getHighestBlockAt((int) mob.getLocation().getX(), (int) mob.getLocation().getZ()).getLocation().getY()) {
 
@@ -130,18 +139,19 @@ public final class Mobs {
 
         } else if (randomNumber == 25 - 5 || randomNumber == 25 - 6 || randomNumber == 25 - 7 || randomNumber == 25 - 8 || randomNumber == 25 - 9) {
 
-            mob.setExplosionRadius(10);
-            mob.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, PotionEffect.INFINITE_DURATION, 3));
-            mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 2));
-            
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.creeper.name_b")));
+            mob.setCustomName(b);
             mob.setCustomNameVisible(true);
 
+            mob.setExplosionRadius(threadLocalRandom.nextInt(1, 15));
+            mob.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, PotionEffect.INFINITE_DURATION, 3));
+            mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 2));
+
         } else if (randomNumber == 25 - 10 || randomNumber == 25 - 11 || randomNumber == 25 - 12 || randomNumber == 25 - 13 || randomNumber == 25 - 14) {
+
+            mob.setCustomName(a);
+            mob.setCustomNameVisible(true);
             
             mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 1));
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.creeper.name_a")));
-            mob.setCustomNameVisible(true);
 
         }
 
@@ -153,9 +163,13 @@ public final class Mobs {
 
         int randomNumber = random.nextInt(40 - 15 + 1) + random.nextInt(20);
 
+        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Spider.class.getSimpleName()));
+        final String b = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.b").replace("%mob%", Spider.class.getSimpleName()));
+        final String a = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.a").replace("%mob%", Spider.class.getSimpleName()));
+
         if (randomNumber == 25 - 1 || randomNumber == 25 - 2 || randomNumber == 25 - 3|| randomNumber == 25 - 4) {
 
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.spider.name_c")));
+            mob.setCustomName(c);
             mob.setCustomNameVisible(true);
 
             mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 5));
@@ -168,7 +182,7 @@ public final class Mobs {
 
         } else if (randomNumber == 25 - 5 || randomNumber == 25 - 6 || randomNumber == 25 - 7 || randomNumber == 25 - 8 || randomNumber == 25 - 9) {
 
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.spider.name_b")));
+            mob.setCustomName(b);
             mob.setCustomNameVisible(true);
 
             mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 3));
@@ -179,7 +193,7 @@ public final class Mobs {
 
         } else if (randomNumber == 25 - 10 || randomNumber == 25 - 11 || randomNumber == 25 - 12 || randomNumber == 25 - 13 || randomNumber == 25 - 14) {
 
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.spider.name_a")));
+            mob.setCustomName(a);
             mob.setCustomNameVisible(true);
 
             mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 2));
@@ -196,9 +210,13 @@ public final class Mobs {
 
         int randomNumber = random.nextInt(40 - 15 + 1) + random.nextInt(20);
 
+        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Skeleton.class.getSimpleName()));
+        final String b = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.b").replace("%mob%", Skeleton.class.getSimpleName()));
+        final String a = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.a").replace("%mob%", Skeleton.class.getSimpleName()));
+
         if (randomNumber == 25 - 1 || randomNumber == 25 - 2 || randomNumber == 25 - 3|| randomNumber == 25 - 4) {
 
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.skeleton.name_c")));
+            mob.setCustomName(c);
             mob.setCustomNameVisible(true);
             mob.setPersistent(true);
 
@@ -223,7 +241,7 @@ public final class Mobs {
             equipment.setLeggings(leggins);
             equipment.setBoots(boots);
 
-            mob.setArrowCooldown(10);
+            mob.setArrowCooldown(random.nextInt(10) + 1);
             mob.setCanPickupItems(false);
             
             ItemStack bow = equipment.getItemInMainHand();
@@ -244,12 +262,12 @@ public final class Mobs {
             mob.getEquipment().setItemInMainHand(bow);
 
             mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 5));
-            mob.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, PotionEffect.INFINITE_DURATION, 4));
+            mob.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, PotionEffect.INFINITE_DURATION, 2));
             mob.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, PotionEffect.INFINITE_DURATION, 1));
             
         } else if (randomNumber == 25 - 5 || randomNumber == 25 - 6 || randomNumber == 25 - 7 || randomNumber == 25 - 8 || randomNumber == 25 - 9) {
 
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.skeleton.name_b")));
+            mob.setCustomName(b);
             mob.setCustomNameVisible(true);
             mob.setPersistent(true);
 
@@ -289,14 +307,14 @@ public final class Mobs {
 
             mob.getEquipment().setItemInMainHand(bow);
 
-            mob.setArrowCooldown(20);
+            mob.setArrowCooldown(random.nextInt(20) + 1);
             mob.setCanPickupItems(false);
 
             mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 5));
             
         } else if (randomNumber == 25 - 10 || randomNumber == 25 - 11 || randomNumber == 25 - 12 || randomNumber == 25 - 13 || randomNumber == 25 - 14) {
 
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.skeleton.name_a")));
+            mob.setCustomName(a);
             mob.setCustomNameVisible(true);
 
             ItemStack helmet = new ItemStack(Material.DIAMOND_HELMET, 1);
@@ -308,7 +326,7 @@ public final class Mobs {
 
             equipment.setHelmet(helmet);
 
-            mob.setArrowCooldown(25);
+            mob.setArrowCooldown(20);
             mob.setCanPickupItems(false);
 
             mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, PotionEffect.INFINITE_DURATION, 6));
@@ -324,9 +342,13 @@ public final class Mobs {
 
         int randomNumber = random.nextInt(40 - 15 + 1) + random.nextInt(20);
 
+        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Enderman.class.getSimpleName()));
+        final String b = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.b").replace("%mob%", Enderman.class.getSimpleName()));
+        final String a = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.a").replace("%mob%", Enderman.class.getSimpleName()));
+
         if (randomNumber == 25 - 1 || randomNumber == 25 - 2 || randomNumber == 25 - 3|| randomNumber == 25 - 4) {
 
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.enderman.name_c")));
+            mob.setCustomName(c);
             mob.setCustomNameVisible(true);
 
             mob.setCanPickupItems(false);
@@ -339,7 +361,7 @@ public final class Mobs {
 
         } else if (randomNumber == 25 - 5 || randomNumber == 25 - 6 || randomNumber == 25 - 7 || randomNumber == 25 - 8 || randomNumber == 25 - 9) {
 
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.enderman.name_b")));
+            mob.setCustomName(b);
             mob.setCustomNameVisible(true);
 
             mob.setCanPickupItems(false);
@@ -351,7 +373,7 @@ public final class Mobs {
 
         } else if (randomNumber == 25 - 10 || randomNumber == 25 - 11 || randomNumber == 25 - 12 || randomNumber == 25 - 13 || randomNumber == 25 - 14) {
 
-            mob.setCustomName(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.enderman.name_a")));
+            mob.setCustomName(a);
             mob.setCustomNameVisible(true);
 
             mob.setCanPickupItems(false);

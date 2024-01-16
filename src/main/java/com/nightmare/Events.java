@@ -1,7 +1,5 @@
 package com.nightmare;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,20 +36,16 @@ import net.md_5.bungee.api.ChatColor;
 
 public final class Events implements Listener {
 
-    private final Plugin plugin = Main.getInstance();
+    protected final Plugin plugin = Main.getInstance();
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
 
+        final YamlConfiguration config = Main.getSettings();
+
         try {
 
-            File settings = new File(plugin.getDataFolder(), "settings.yml");   
-
-            if (!settings.exists()) throw new IOException("settings.yml does not exist.");
-
-            YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
-
-            Eval.eval(plugin, "onJoin", config);
+            Eval.eval("onJoin", config);
 
             if (config.getBoolean("scoreboard.enable")) {
 
@@ -132,13 +126,9 @@ public final class Events implements Listener {
 
         try {
 
-            File settings = new File(plugin.getDataFolder(), "settings.yml");   
+            final YamlConfiguration config = Main.getSettings();
 
-            if (!settings.exists()) throw new IOException("settings.yml does not exist.");
-
-            YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
-
-            Eval.eval(plugin, "onLeave", config);
+            Eval.eval("onLeave", config);
 
             if (config.getBoolean("scoreboard.enable")) { 
 
@@ -177,13 +167,9 @@ public final class Events implements Listener {
 
         try {
 
-            File settings = new File(plugin.getDataFolder(), "settings.yml");   
+            final YamlConfiguration config = Main.getSettings();
 
-            if (!settings.exists()) throw new IOException("settings.yml does not exist.");
-
-            YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
-
-            Eval.eval(plugin, "onServerPing", config);
+            Eval.eval("onServerPing", config);
 
             if (config.getBoolean("motd.enable")) {
 
@@ -212,16 +198,12 @@ public final class Events implements Listener {
     public void onSpawnEvent(EntitySpawnEvent event) {
 
         try {
+
+            final YamlConfiguration config = Main.getSettings();
         
             if (event.getEntityType() == EntityType.ZOMBIE) {
 
-                File settings = new File(plugin.getDataFolder(), "settings.yml");   
-
-                if (!settings.exists()) throw new IOException("settings.yml does not exist.");
-
-                YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
-
-                Eval.eval(plugin, "onSpawnEvent", config);
+                Eval.eval("onSpawnEvent", config);
 
                 Mobs mobs = new Mobs();
 
@@ -229,13 +211,7 @@ public final class Events implements Listener {
 
             } else if (event.getEntityType() == EntityType.CREEPER) {
 
-                File settings = new File(plugin.getDataFolder(), "settings.yml");   
-
-                if (!settings.exists()) throw new IOException("settings.yml does not exist.");
-
-                YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
-
-                Eval.eval(plugin, "onSpawnEvent", config);
+                Eval.eval("onSpawnEvent", config);
 
                 Mobs mobs = new Mobs();
 
@@ -243,13 +219,7 @@ public final class Events implements Listener {
 
             } else if (event.getEntityType() == EntityType.SPIDER) {
 
-                File settings = new File(plugin.getDataFolder(), "settings.yml");   
-
-                if (!settings.exists()) throw new IOException("settings.yml does not exist.");
-
-                YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
-
-                Eval.eval(plugin, "onSpawnEvent", config);
+                Eval.eval("onSpawnEvent", config);
 
                 Mobs mobs = new Mobs();
 
@@ -257,13 +227,7 @@ public final class Events implements Listener {
 
             } else if (event.getEntityType() == EntityType.SKELETON) {
 
-                File settings = new File(plugin.getDataFolder(), "settings.yml");   
-
-                if (!settings.exists()) throw new IOException("settings.yml does not exist.");
-
-                YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
-
-                Eval.eval(plugin, "onSpawnEvent", config);
+                Eval.eval("onSpawnEvent", config);
 
                 Mobs mobs = new Mobs();
 
@@ -271,13 +235,7 @@ public final class Events implements Listener {
 
             } else if (event.getEntityType() == EntityType.ENDERMAN) {
 
-                File settings = new File(plugin.getDataFolder(), "settings.yml");   
-
-                if (!settings.exists()) throw new IOException("settings.yml does not exist.");
-
-                YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
-
-                Eval.eval(plugin, "onSpawnEvent", config);
+                Eval.eval("onSpawnEvent", config);
 
                 Mobs mobs = new Mobs();
 
@@ -297,7 +255,9 @@ public final class Events implements Listener {
     @EventHandler(priority = EventPriority.LOWEST)
     public void onEntityShootArrow(EntityShootBowEvent event) {
 
-        if (event.getBow().getItemMeta().hasDisplayName() && event.getBow().getItemMeta().getDisplayName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', "&c&lplugin Bow &4☠")) && event.getEntityType() == EntityType.SKELETON) {
+        final String NightmareBow = ChatColor.translateAlternateColorCodes('&', "&c&lNightmare Bow &4☠");
+
+        if (event.getBow().getItemMeta().hasDisplayName() && event.getBow().getItemMeta().getDisplayName().equalsIgnoreCase(NightmareBow) && event.getEntityType() == EntityType.SKELETON) {
 
             Skeleton mob = (Skeleton) event.getEntity();
 
@@ -316,23 +276,22 @@ public final class Events implements Listener {
 
         try {
 
-            File settings = new File(plugin.getDataFolder(), "settings.yml");   
+            final YamlConfiguration config = Main.getSettings();
 
-            if (!settings.exists()) throw new IOException("settings.yml does not exist.");
+            Eval.eval("onSpawnEvent", config);
 
-            YamlConfiguration config = YamlConfiguration.loadConfiguration(settings);
+            final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", event.getEntity().getClass().getSimpleName()));
+            final String b = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.b").replace("%mob%", event.getEntity().getClass().getSimpleName()));
 
-            Eval.eval(plugin, "onSpawnEvent", config);
-
-            if (event.getEntityType() == EntityType.ZOMBIE && event.getEntity().getCustomName() != null && event.getEntity().getCustomName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.zombie.name_c"))))
-
-                event.getDrops().clear();
-
-            else if (event.getEntityType() == EntityType.SKELETON && event.getEntity().getCustomName() != null && event.getEntity().getCustomName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.skeleton.name_c"))))
+            if (event.getEntityType() == EntityType.ZOMBIE && event.getEntity().getCustomName() != null && event.getEntity().getCustomName().equalsIgnoreCase(c))
 
                 event.getDrops().clear();
 
-            else if (event.getEntityType() == EntityType.SKELETON && event.getEntity().getCustomName() != null && event.getEntity().getCustomName().equalsIgnoreCase(ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.skeleton.name_b"))))
+            else if (event.getEntityType() == EntityType.SKELETON && event.getEntity().getCustomName() != null && event.getEntity().getCustomName().equalsIgnoreCase(c))
+
+                event.getDrops().clear();
+
+            else if (event.getEntityType() == EntityType.SKELETON && event.getEntity().getCustomName() != null && event.getEntity().getCustomName().equalsIgnoreCase(b))
 
                 event.getDrops().clear();
 
