@@ -11,7 +11,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 import com.nightmare.Mobs.Tasks;
 import com.nightmare.Scoreboard.Score;
 import com.nightmare.Tablist.Tab;
-import com.nightmare.Utils.Constants;
 import com.nightmare.Utils.Utils;
 
 import net.md_5.bungee.api.ChatColor;
@@ -25,8 +24,8 @@ public final class Main extends JavaPlugin {
   public void onEnable() {
 
     Bukkit.getConsoleSender().sendMessage("");
-    Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lNighmare Core"));
-    Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', String.format("&b&lVersion: &f%s", Constants.VERSION)));
+    Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&c&lNighmare Core &7| &aON"));
+    Bukkit.getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', "&fCreated by &bDevCheckOG"));
     Bukkit.getConsoleSender().sendMessage("");
 
     instance = this;
