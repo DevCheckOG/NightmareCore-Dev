@@ -15,14 +15,14 @@ public final class IO {
     public static final HashMap<String, String> HashMapOfMessages = new HashMap<String, String>();
     public static final HashMap<String, String> HashMapOfSettings = new HashMap<String, String>();
 
-    public static final void GenerateDataFolder(Plugin plugin) throws IOException {
+    public static void GenerateDataFolder(Plugin plugin) throws IOException {
         
         if (!plugin.getDataFolder().exists())
             plugin.getDataFolder().mkdir();
 
     }
 
-    public static final void GenerateMessages(Plugin plugin) throws IOException {
+    public static void GenerateMessages(Plugin plugin) throws IOException {
 
         if (!plugin.getDataFolder().exists())
             throw new IOException("No existing data folder.");
@@ -55,7 +55,7 @@ public final class IO {
 
     }   
 
-    public static final void GenerateSettings(Plugin plugin) throws IOException {
+    public static void GenerateSettings(Plugin plugin) throws IOException {
         
         if (!plugin.getDataFolder().exists())
             throw new IOException("No existing data folder.");
@@ -177,7 +177,7 @@ public final class IO {
 
     }
 
-    public static final void SubmitMessages(Plugin plugin) throws IOException {
+    public static void SubmitMessages(Plugin plugin) throws IOException {
 
         File messages = new File(plugin.getDataFolder(), "messages.yml");
 
@@ -203,7 +203,7 @@ public final class IO {
 
     }
 
-    public static final void SubmitSettings(Plugin plugin) throws IOException {
+    public static void SubmitSettings(Plugin plugin) throws IOException {
 
         File settings = new File(plugin.getDataFolder(), "settings.yml");
 
@@ -219,7 +219,7 @@ public final class IO {
 
     }
 
-    public static final void reloadSettings(Plugin plugin) throws IOException {
+    public static void reloadSettings(Plugin plugin) throws IOException {
         
         File settings = new File(plugin.getDataFolder(), "settings.yml");
 
@@ -239,7 +239,7 @@ public final class IO {
 
     }
 
-    public static final void reloadMessages(Plugin plugin) throws IOException {
+    public static void reloadMessages(Plugin plugin) throws IOException {
         
         File messages = new File(plugin.getDataFolder(), "messages.yml");
 

@@ -93,7 +93,7 @@ public final class Main extends JavaPlugin {
         e.printStackTrace();
       }
 
-    } else if (config.getBoolean("scoreboard.enable") == true) {
+    } else if (config.getBoolean("scoreboard.enable")) {
 
       Score score = new Score();
       score.initScorebaord();
@@ -109,7 +109,7 @@ public final class Main extends JavaPlugin {
         e.printStackTrace();
       }
 
-    } else if (config.getBoolean("tablist.enable") == true) {
+    } else if (config.getBoolean("tablist.enable")) {
 
       Tab tab = new Tab();
 
@@ -122,11 +122,11 @@ public final class Main extends JavaPlugin {
 
     }
 
-    Utils.initNightmare(instance);
+    Utils.initNightmare();
 
-    Tasks setEffectsMobs = new Tasks();
+    Tasks tasksMobs = new Tasks();
 
-    setEffectsMobs.setEffectsMobs();
+    tasksMobs.setEffectsMobs();
 
   }
 
@@ -136,25 +136,25 @@ public final class Main extends JavaPlugin {
 
   }
 
-  public static final Plugin getInstance() {
+  public static Plugin getInstance() {
 
     return instance;
 
   }
 
-  public static final YamlConfiguration getSettings() {
+  public static YamlConfiguration getSettings() {
     
     return settings;
 
   }
 
-  public static final YamlConfiguration getMessages() {
+  public static YamlConfiguration getMessages() {
     
     return messages;
 
   }
 
-  public static final void setSettings() throws IOException {
+  public static void setSettings() throws IOException {
 
     File file = new File(instance.getDataFolder(), "settings.yml");
 
@@ -165,7 +165,7 @@ public final class Main extends JavaPlugin {
     
   }
 
-  public static final void setMessages() throws IOException {
+  public static void setMessages() throws IOException {
     
     File file = new File(instance.getDataFolder(), "messages.yml");
 

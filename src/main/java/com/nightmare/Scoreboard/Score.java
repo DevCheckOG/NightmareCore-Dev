@@ -20,7 +20,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public final class Score {
 
-    protected final Plugin plugin = Main.getInstance();
+    private final Plugin plugin = Main.getInstance();
 
     public static final Map<UUID, FastBoard> boards = new HashMap<UUID, FastBoard>();
     
@@ -45,7 +45,7 @@ public final class Score {
 
         final YamlConfiguration config = Main.getSettings();
 
-        if (config.getStringList("scoreboard.lines") == null) return;
+        if (config.get("scoreboard.lines") == null) return;
 
         List<String> lines = config.getStringList("scoreboard.lines");
 

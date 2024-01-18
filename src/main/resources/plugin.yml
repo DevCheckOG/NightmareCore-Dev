@@ -3,17 +3,15 @@ main: com.nightmare.Main
 version: 1.0-release
 api-version: 1.16
 softdepend: [PlaceHolderAPI]
+website: https://github.com/DevCheckOG/NightmareCore-Dev
+description: 'Nightmare Core es un plugin que intenta aumentar la dificultad de Minecraft mucho más.'
 
 commands:
-
   nightmare:
-
     description: "Manage the Nightmare Core."
     usage: "/nightmare <category> <subcommand> | /nightmare <category>"
 
 permissions:
-
   nightmare.reload:
-
     description: "Allows the player to reload the Nightmare Core."
     default: true

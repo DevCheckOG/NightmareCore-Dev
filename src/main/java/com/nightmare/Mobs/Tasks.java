@@ -2,6 +2,7 @@ package com.nightmare.Mobs;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import org.bukkit.GameMode;
@@ -52,11 +53,11 @@ public final class Tasks {
 
                     if (mob instanceof Zombie) {
 
-                        Zombie zombie = (Zombie) mob;
+                        final Zombie zombie = (Zombie) mob;
 
-                        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Zombie.class.getSimpleName()));
+                        final String c = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("config.mobs.c")).replace("%mob%", Zombie.class.getSimpleName()));
 
-                        if (zombie.getCustomName() != null && zombie.getCustomName().equalsIgnoreCase(c) && zombie.isDead() != true) {
+                        if (zombie.getCustomName() != null && zombie.getCustomName().equalsIgnoreCase(c) && !zombie.isDead()) {
 
                             world.spawnParticle(Particle.EXPLOSION_HUGE, zombie.getLocation(), 60);
                             world.playSound(zombie.getLocation(), Sound.ENTITY_GENERIC_EXPLODE, SoundCategory.HOSTILE, 1, 1);
@@ -65,11 +66,11 @@ public final class Tasks {
 
                     } else if (mob instanceof Creeper) {
 
-                        Creeper creeper = (Creeper) mob;
+                        final Creeper creeper = (Creeper) mob;
 
-                        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Creeper.class.getSimpleName()));
+                        final String c = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("config.mobs.c")).replace("%mob%", Creeper.class.getSimpleName()));
 
-                        if (creeper.getCustomName() != null && creeper.getCustomName().equalsIgnoreCase(c) && creeper.isDead() != true && creeper.getTarget() == null) {
+                        if (creeper.getCustomName() != null && creeper.getCustomName().equalsIgnoreCase(c) && !creeper.isDead() && creeper.getTarget() == null) {
 
                             for (Entity entity : creeper.getNearbyEntities(15.0, 15.0, 15.0).stream().filter(filterPlayer).toList()) {
 
@@ -80,7 +81,7 @@ public final class Tasks {
 
                             }
 
-                        } else if (creeper.getCustomName() != null && creeper.getCustomName().equalsIgnoreCase(c) && creeper.isDead() != true && creeper.getTarget() == null) {
+                        } else if (creeper.getCustomName() != null && creeper.getCustomName().equalsIgnoreCase(c) && !creeper.isDead() && creeper.getTarget() == null) {
 
                             for (Entity entity : creeper.getNearbyEntities(15.0, 15.0, 15.0).stream().filter(filterPlayer).toList()) {
 
@@ -95,11 +96,11 @@ public final class Tasks {
 
                     } else if (mob instanceof Spider) {
 
-                        Spider spider = (Spider) mob;
+                        final Spider spider = (Spider) mob;
 
-                        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Spider.class.getSimpleName()));
+                        final String c = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("config.mobs.c")).replace("%mob%", Spider.class.getSimpleName()));
 
-                        if (spider.getCustomName() != null && spider.getCustomName().equalsIgnoreCase(c) && spider.isDead() != true && spider.getTarget() != null) {
+                        if (spider.getCustomName() != null && spider.getCustomName().equalsIgnoreCase(c) && !spider.isDead() && spider.getTarget() != null) {
 
                             if (spider.getTarget() instanceof Player) {
 
@@ -108,6 +109,7 @@ public final class Tasks {
                                 for (int i = 0; i < 3; i++) {
 
                                     spider.getWorld().spawnEntity(player.getLocation(), EntityType.LIGHTNING);
+
                                 }
 
                             }
@@ -116,15 +118,15 @@ public final class Tasks {
 
                     } else if (mob instanceof Enderman) {
 
-                        Enderman enderman = (Enderman) mob;
+                        final Enderman enderman = (Enderman) mob;
 
-                        final String c = ChatColor.translateAlternateColorCodes('&', config.getString("config.mobs.c").replace("%mob%", Enderman.class.getSimpleName()));
+                        final String c = ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(config.getString("config.mobs.c")).replace("%mob%", Enderman.class.getSimpleName()));
 
-                        if (enderman.getCustomName() != null && enderman.getCustomName().equalsIgnoreCase(c) && enderman.isDead() != true) {
+                        if (enderman.getCustomName() != null && enderman.getCustomName().equalsIgnoreCase(c) && !enderman.isDead()) {
 
                             enderman.getWorld().spawnParticle(Particle.END_ROD, enderman.getLocation(), 60);
 
-                        } else if (enderman.getCustomName() != null && enderman.getCustomName().equalsIgnoreCase(c) && enderman.isDead() != true) {
+                        } else if (enderman.getCustomName() != null && enderman.getCustomName().equalsIgnoreCase(c) && !enderman.isDead()) {
 
                             enderman.getWorld().spawnParticle(Particle.PORTAL, enderman.getLocation(), 60);
 

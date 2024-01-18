@@ -36,7 +36,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public final class Events implements Listener {
 
-    protected final Plugin plugin = Main.getInstance();
+    private final Plugin plugin = Main.getInstance();
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onJoin(PlayerJoinEvent event) {
@@ -137,6 +137,7 @@ public final class Events implements Listener {
                 if (board != null) {
                     board.delete();
                 }
+
             }
             
             if (config.getBoolean("join_and_leave.enable")) {
@@ -257,7 +258,7 @@ public final class Events implements Listener {
 
         final String NightmareBow = ChatColor.translateAlternateColorCodes('&', "&c&lNightmare Bow &4☠");
 
-        if (event.getBow().getItemMeta().hasDisplayName() && event.getBow().getItemMeta().getDisplayName().equalsIgnoreCase(NightmareBow) && event.getEntityType() == EntityType.SKELETON) {
+        if (event.getBow() != null && event.getBow().getItemMeta().hasDisplayName() && event.getBow().getItemMeta().getDisplayName().equalsIgnoreCase(NightmareBow) && event.getEntityType() == EntityType.SKELETON) {
 
             Skeleton mob = (Skeleton) event.getEntity();
 

@@ -15,7 +15,7 @@ public final class Eval {
 
     private static final Plugin plugin = Main.getInstance();
 
-    public static final void eval(String event, YamlConfiguration config) throws IOException {
+    public static void eval(String event, YamlConfiguration config) throws IOException {
         
         if (event.equalsIgnoreCase("onJoin")) {
 

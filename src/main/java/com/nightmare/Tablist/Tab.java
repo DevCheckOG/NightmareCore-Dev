@@ -16,7 +16,7 @@ import net.md_5.bungee.api.ChatColor;
 
 public final class Tab {
 
-    protected final Plugin plugin = Main.getInstance();
+    private final Plugin plugin = Main.getInstance();
 
     public final void initTablist() throws IOException {
 

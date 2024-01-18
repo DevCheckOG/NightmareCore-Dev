@@ -34,7 +34,6 @@ public final class Commands implements CommandExecutor, TabCompleter{
         if (args.length > 1 && args[0].equalsIgnoreCase("reload")) {
             return List.of("messages.yml", "settings.yml");
         }
-        
 
         return null;
 
