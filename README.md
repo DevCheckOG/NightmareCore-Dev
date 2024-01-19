@@ -2,7 +2,7 @@
 Repositorio oficial para desarrolladores del **Núcleo Pesadilla**.
 
 > [!NOTE]  
-> Este plugin es compatible con versiones superiores a Minecraft 1.16+ además con compatibilidad con Java 17 o superior.
+> Este plugin es compatible con versiones superiores a Minecraft 1.17+ además con compatibilidad con Java 17 o superior.
 
 > [!WARNING]  
 > El plugin se encuentra en constante modificación y construcción puede haber bugs.
