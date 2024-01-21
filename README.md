@@ -1,4 +1,5 @@
 # NightmareCore-Dev 💀
+
 Repositorio oficial para desarrolladores del **Núcleo Pesadilla**.
 
 > [!NOTE]  
