@@ -1,13 +1,11 @@
-# NightmareCore 💀
-
-Repositorio oficial para desarrolladores del **Núcleo Pesadilla**.
+# Nightmare Core 💀
 
 > [!NOTE]  
-> Este plugin es compatible con versiones superiores a Minecraft 1.17+ además con compatibilidad con Java 17 o superior.
+> This plugin is compatible with versions higher than Minecraft 1.17+, as well as Java 17 or higher.
 
 > [!WARNING]  
-> El plugin se encuentra en constante modificación y construcción puede haber bugs.
+> The plugin is under constant development, it may contain bugs.
 
-## ¿Que es el plugin Nightmare Core 💀?
+## ¿What is the Nightmare Core plugin 💀?
 
-- 🔥 **Es un plugin que intenta convertir la experiencia normal de un usuario de minecraft en una pesadilla con gran dificultad para avanzar en el juego.**
+- It is an add-on that tries to turn the normal experience of a Minecraft user into a nightmare with great difficulty in advancing in the game.
